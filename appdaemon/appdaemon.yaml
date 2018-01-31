@@ -1,0 +1,17 @@
+AppDaemon:
+  logfile: STDOUT
+  errorfile: STDERR
+  threads: 10
+  app_dir: /config/appdaemon/apps
+  cert_verify: False
+HASS:
+  ha_url: https://192.168.0.243:8123
+  ha_key: ad10e09a_A
+HADashboard:
+  dash_url: http://192.168.0.243:5050
+  dash_dir: /config/appdaemon/dashboards
+
+# Apps
+hello_world:
+  module: hello
+  class: HelloWorld

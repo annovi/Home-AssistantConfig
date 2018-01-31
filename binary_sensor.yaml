@@ -1,0 +1,32 @@
+- platform: threshold
+  name: "Low LUX"
+  threshold: 8
+  type: lower  
+  entity_id: sensor.illumination_158d000165fe49
+
+- platform: template
+  sensors:
+    people_home:
+      friendly_name: "People home"
+      value_template: >-         
+        {{ is_state('binary_sensor.motion_sensor_158d00012320ec', 'on')
+           or is_state('binary_sensor.motion_sensor_158d0001643fe7', 'on')
+           or is_state('binary_sensor.motion_sensor_158d000165fe49', 'on') 
+           or is_state('binary_sensor.motion_sensor_158d00016be491', 'on')  
+           or is_state('binary_sensor.motion_sensor_158d00016be5f8', 'on') }}
+    people_living_room:
+      friendly_name: "People living room"
+      value_template: >-
+        {{ is_state('binary_sensor.motion_sensor_158d0001643fe7', 'on')
+           or is_state('binary_sensor.motion_sensor_158d000165fe49', 'on') }}
+    bathroom_occupied:
+      friendly_name: "Bathroom occupied"
+      value_template: >-
+        {{ is_state('binary_sensor.motion_sensor_158d00012320ec', 'on')
+           or is_state('binary_sensor.motion_sensor_158d00016be5f8', 'on') }}
+    hallway_occupied:
+      friendly_name: "People hallway"
+      value_template: >-
+        {{  is_state('binary_sensor.motion_sensor_158d00016be491', 'on')}}
+
+

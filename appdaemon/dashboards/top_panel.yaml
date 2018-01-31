@@ -1,0 +1,43 @@
+side_temperature:
+    widget_type: sensor
+    title: Temperature
+    units: "&deg;F"
+    precision: 0
+    entity: sensor.side_temp_corrected
+
+weather:
+    widget_type: weather
+    units: "&deg;F"
+
+people_home:
+    widget_type: binary_sensor
+    title: Home
+    entity: binary_sensor.people_home
+
+toilet_occupied:
+   widget_type: binary_sensor
+   title: Toilet
+   entity: binary_sensor.bathroom_occupied
+    
+light_level_kitchen:
+    widget_type: sensor
+    title: Light Level kitchen
+    units: "lux"
+    precision: 0
+    shorten: 1
+    entity: sensor.illumination_158d0001643fe7
+
+
+light_level_living_room:
+    widget_type: sensor
+    title: Light Level living room
+    units: "lux"
+    precision: 0
+    shorten: 1
+    entity: sensor.illumination_158d000165fe49
+ 
+
+
+layout:
+    - clock.clock(2x1), weather(2x2),  temperature_balcony, humidty_balcony, elise_presence, andrea_presence
+    - mode(2x1), light_level_kitchen, light_level_living_room, people_home, toilet_occupied

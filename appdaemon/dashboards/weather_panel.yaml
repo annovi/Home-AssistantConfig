@@ -1,0 +1,15 @@
+weather_frame:
+    widget_type: iframe
+    title: Radar
+    refresh: 300
+    frame_style: ""
+    img_list: 
+      - https://api.buienradar.nl/image/1.0/RadarMapNL?w=600§&h=600
+
+
+      
+layout:
+    - weather_frame(4x4) , sensor.dark_sky_hourly_summary(2x1), sensor.dark_sky_daily_summary(2x1)
+    - sensor.br_temperature, sensor.dark_sky_apparent_temperature, sensor.br_humidity, sensor.br_pressure
+    - sensor.dark_sky_daily_low_temperature, sensor.dark_sky_daily_high_temperature, sensor.br_wind_direction, sensor.br_wind_force 
+    - sensor.br_precipitation, sensor.br_precipitation_forecast_average, sensor.br_precipitation_forecast_total,sensor.dark_sky_precip_probability

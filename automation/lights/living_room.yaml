@@ -1,0 +1,29 @@
+- alias: Light level is low - switch on living room light
+  trigger:
+    platform: state
+    entity_id: binary_sensor.people_home
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: time
+        after: '17:00:00'
+        before: '22:59:00'
+      - condition: numeric_state
+        entity_id: sensor.illumination_158d000165fe49
+        below: '10'
+      - condition: sun
+        after: sunset
+        after_offset: -00:45:00
+      - condition: state
+        entity_id: light.living_room
+        state: 'off'
+      - condition: state
+        entity_id: script.light_turned_off_5min
+        state: 'off'
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.living_room
+        brightness: 255
+        kelvin: 2700

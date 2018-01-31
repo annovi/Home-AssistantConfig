@@ -1,0 +1,80 @@
+living_room_light_1:
+    widget_type: light
+    title: Light Living room
+    entity: light.living_room
+    icon_on: mdi-lamp
+    icon_off: mdi-lamp
+    on_attributes:
+      brightness: 255
+      color_temp: 276
+
+bathroom_light:
+    widget_type: light
+    title: Light Bathroom
+    entity: light.bathroom
+    icon_on: mdi-lamp
+    icon_off: mdi-lamp
+
+hallway_light:
+    widget_type: light
+    title: Light Hallway
+    entity: light.hallway
+    icon_on: mdi-lamp
+    icon_off: mdi-lamp
+
+
+kitchen_pressure:
+    widget_type: sensor
+    title: Pressure kitchen
+    units: "hPa"
+    entity: sensor.pressure_158d0001fa5a53
+
+kitchen_temperature:
+    widget_type: sensor
+    title: Temperature kitchen
+    units: "&deg;C"
+    entity: sensor.temperature_158d0001fa5a53
+
+kitchen_humidity:
+    widget_type: sensor
+    title: Humidity kitchen
+    units: "%"
+    entity: sensor.humidity_158d0001fa5a53
+
+bedroom_temperature:
+    widget_type: sensor
+    title: Temperature bedroom
+    units: "&deg;C"
+    entity: sensor.temperature_158d0001c1b8a3
+
+bedroom_humidity:
+    widget_type: sensor
+    title: Humidity bedroom
+    units: "%"
+    entity: sensor.humidity_158d0001c1b8a3
+
+livingroom_thermostat_right:
+    widget_type: climate
+    title: Living room thermostat right
+    units: "&deg;C"
+    precision: 1
+    entity: climate.danfoss_popp_radiator_thermostat_heating_1
+
+livingroom_thermostat_left:
+    widget_type: climate
+    title: Living room thermostat left
+    units: "&deg;C"
+    precision: 1
+    entity: climate.danfoss_z_thermostat_014g0013_heating_1_2
+
+bedroom_thermostat:
+    widget_type: climate
+    title: Bedroom thermostat
+    units: "&deg;C"
+    precision: 1
+    entity: climate.danfoss_z_thermostat_014g0013_heating_1
+
+ 
+layout:
+    - kitchen_temperature,  bedroom_temperature, kitchen_humidity, bedroom_humidity, kitchen_pressure, livingroom_thermostat_left, livingroom_thermostat_right, bedroom_thermostat
+    - living_room_light_1, bathroom_light, hallway_light,  spacer (5x1) # kitchen_light, kitchen_light1, kitchen_light2, kitchen_light3, kitchen_light4

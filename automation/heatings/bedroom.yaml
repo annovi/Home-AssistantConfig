@@ -1,0 +1,33 @@
+- alias: 'Set heat 15c at 7:30 BEDROOM'
+  trigger:
+    - platform: time
+      at: "07:30:00"
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.danfoss_z_thermostat_014g0013_heating_1
+        operation_mode: Heat          
+        temperature: 15
+
+- alias: 'Monitor temperature heating BEDROOM'
+  trigger:
+    - platform: time
+      minutes: '/5'
+      seconds: 00
+  condition:
+    condition: and
+    conditions:
+      - condition: numeric_state
+        entity_id: sensor.temperature_158d0001c1b8a3
+        below: '18.5'
+      - condition: time
+        after: '20:00:00'
+        before: '5:30:00'
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.danfoss_z_thermostat_014g0013_heating_1
+        operation_mode: Heat
+        temperature: 22
+
+

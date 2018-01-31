@@ -1,0 +1,25 @@
+- alias: Turn on hallway light normal - movement
+  trigger:
+    platform: state
+    entity_id: binary_sensor.hallway_occupied
+    to: 'on'
+  condition:
+    condition: time
+    after: '06:00:00'
+    before: '22:59:00'
+  action:
+    service: switch.turn_on
+    entity_id: switch.wall_switch_left_158d0001f51199
+
+
+- alias: Turn off hallway light 1 minutes after last movement
+  trigger:
+    platform: state
+    entity_id: binary_sensor.hallway_occupied
+    to: 'off'
+    for:
+      minutes: 1
+  action:
+    service: switch.turn_off
+    entity_id: switch.wall_switch_left_158d0001f51199
+

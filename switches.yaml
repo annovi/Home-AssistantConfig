@@ -1,0 +1,8 @@
+platform: rflink
+device_defaults:
+  fire_event: true
+  signal_repetitions: 2
+devices:
+  fa500_00005963_00:
+    name: Plug-1
+

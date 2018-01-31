@@ -1,0 +1,44 @@
+- alias: Turn on bathroom light night soft - movement
+  trigger:
+    platform: state
+    entity_id: binary_sensor.bathroom_occupied
+    to: 'on'
+  condition:  
+    condition: time
+    after: '22:59:00'
+    before: '06:30:00'
+  action:
+    service: light.turn_on
+    data:
+      entity_id: light.bathroom
+      brightness: 10
+      color_temp: "800"
+
+- alias: Turn on bathroom light normal - movement
+  trigger:
+    platform: state
+    entity_id: binary_sensor.bathroom_occupied
+    to: 'on'
+  condition:
+    condition: time
+    after: '06:30:00'
+    before: '22:59:00'
+  action:
+    service: light.turn_on
+    data:
+      entity_id: light.bathroom
+      brightness: 255
+      color_temp: "294"
+
+
+- alias: Turn off bathroom light 1 minutes after last movement
+  trigger:
+    platform: state
+    entity_id: binary_sensor.bathroom_occupied
+    to: 'off'
+    for:
+      minutes: 1
+  action:
+    service: light.turn_off
+    entity_id: light.bathroom
+

@@ -1,0 +1,67 @@
+- alias: 'Set heat 22c at 06:00 and 17:00 LEFT'
+  trigger:
+    - platform: time
+      at: "17:00:00"
+    - platform: time
+      at: '06:00:00'
+  condition:
+    condition: and
+    conditions:
+      - condition: numeric_state
+        entity_id: sensor.temperature_158d0001fa5a53
+        below: '19.5'
+      - condition: time
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.danfoss_z_thermostat_014g0013_heating_1_2
+        operation_mode: Heat
+        temperature: 22
+
+- alias: 'Set heat 15c at 8:00 and 22:30 LEFT'
+  trigger:
+    - platform: time
+      at: "22:30:00"
+    - platform: time
+      at: "07:45:00"
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.danfoss_z_thermostat_014g0013_heating_1_2
+        operation_mode: Heat          
+        temperature: 15
+
+- alias: 'Monitor temperature heating LEFT'
+  trigger:
+    - platform: time
+      minutes: '/5'
+      seconds: 00
+  condition:
+    condition: and
+    conditions:
+      - condition: numeric_state
+        entity_id: sensor.temperature_158d0001fa5a53
+        above: '20.5'
+      - condition: time
+        after: '18:00:00'
+        before: '22:30:00'
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.danfoss_z_thermostat_014g0013_heating_1_2
+        operation_mode: Heat
+        temperature: 20.5
+
+
